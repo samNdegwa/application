@@ -36,16 +36,16 @@ $sqlpay="SELECT * FROM application_batches WHERE payment='1'";
                 $aproved++;
                }
 
-   $sqlrej="SELECT * FROM application_batches WHERE status='2'";
-    $resultrej=mysqli_query($con,$sqlrej) or die(mysql_error());
-    $rejected=0;
-    while($rowrej=mysqli_fetch_array($resultrej))
-               {  
-                $c=$rowrej['batch_code'];
-                $rejected++;
-               }
+   // $sqlrej="SELECT * FROM application_batches WHERE status='2'";
+   //  $resultrej=mysqli_query($con,$sqlrej) or die(mysql_error());
+   //  $rejected=0;
+   //  while($rowrej=mysqli_fetch_array($resultrej))
+   //             {  
+   //              $c=$rowrej['batch_code'];
+   //              $rejected++;
+   //             }
 
-   $sqlrej="SELECT * FROM application_batches WHERE status='11'";
+   $sqlrej="SELECT * FROM application_batches WHERE status='2'";
     $resultrej=mysqli_query($con,$sqlrej) or die(mysql_error());
     $booked=0;
     while($rowrej=mysqli_fetch_array($resultrej))

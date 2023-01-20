@@ -109,6 +109,9 @@ date_default_timezone_set('Africa/Nairobi');
       $no=1;
       while($row=mysqli_fetch_array($result))
       { 
+        $course_id = $row['course_id'];
+        $app_id = $row['applicant_id'];
+        $cos = $row['course_title'];
       	?>
         <tr>
           <td style="display:none;"><?php echo $row['applicant_id'];?></td>
@@ -124,7 +127,7 @@ date_default_timezone_set('Africa/Nairobi');
     	
     </tbody>
   </table>
-  <button class="btn btn-info btn-sm" id="send-booking" onclick='send_booking()'><i class="fa fa-check" aria-hidden="true"></i> Book</button>
+  <button class="btn btn-info btn-sm" id="send-booking" onclick='send_booking("<?php echo $code?>","<?php echo $app_id?>","<?php echo $cos?>","<?php echo $course_id?>")'><i class="fa fa-check" aria-hidden="true"></i> Book</button>
   <button class="btn btn-danger btn-sm" id="reject-application" onclick="reject_application()"><i class="fa fa-close" aria-hidden="true"></i> Reject</button>
 </div>
   </div>

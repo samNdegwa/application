@@ -58,7 +58,7 @@ if ($_POST['upload_csv_cert_renewal_group']) {
 
   	$no++;
 
-     $msg='Dear '.$name.', Your son/ daughter shall proceed for a short break from 08/12/22 till 13/12/22 to prepare for outside placement. He/she will be expected to report back on 14/12/2022.  For clarification call us on 0724303431 Consolata Medical College';
+     $msg='Dear '.$name.', Kindly download student rules and regulations, Medical Agreement Form and Admission Agreement form(latest), from https://consolatamedcollege.ac.ke/january-2023-admission-docs.php?forms. Your access code is 2309 These forms must be duly filled and presented during admission. Sister Leonella Consolata Medical College';
 
   	$query="INSERT INTO tb_messages(name,phone,message,group_name,stamp) VALUES ('".$name."','".$newNumber."','".$msg."','".$group_name."','".$stamp."')";
   	mysqli_query($con, $query);

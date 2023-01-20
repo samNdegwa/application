@@ -1,6 +1,5 @@
 <?php
 include '../includes/student-data.php';
-<<<<<<< HEAD
 require_once 'dompdf/autoload.inc.php'; //we've assumed that the dompdf directory is in the same directory as your PHP file. If not, adjust your autoload.inc.php i.e. first line of code accordingly.
 
 // reference the Dompdf namespace
@@ -11,21 +10,17 @@ use Dompdf\Dompdf;
 $dompdf = new Dompdf();
 
 //Get user information
-
-=======
->>>>>>> c9b07b141756ad46f87c08af49d500dab87c50d0
-$sql="SELECT applicants.applicant_id, courses.course_title, applicants.date_applied, intakes.year, intakes.month, applicants.status FROM applicants
-   INNER JOIN courses ON applicants.course_id=courses.course_id INNER JOIN intakes ON applicants.intake_id=intakes.id WHERE applicant_id='$approved_app'";
+$sql="SELECT applicants.applicant_id, courses.course_title, applicants.date_applied, intakes.year, intakes.month, intakes.report_date,applicants.status FROM applicants INNER JOIN courses ON applicants.course_id=courses.course_id INNER JOIN intakes ON applicants.intake_id=intakes.id WHERE applicant_id='$approved_app'";
     $result=mysqli_query($con,$sql) or die(mysql_error());
     while($row=mysqli_fetch_array($result))
                {  
                   $couese_name=$row['course_title'];
                   $intake_month=$row['month'];
                   $intake_year=$row['year'];
+                  $report_date=$row['report_date'];
                   $date_applied=$row['date_applied'];
                   $status=$row['status'];
                 }
-<<<<<<< HEAD
 
      // Letter head image
 $image = 'letter.jpg';
@@ -45,41 +40,35 @@ $src2 = 'data:'.mime_content_type($image2).';base64,'.$imageData2;
 
 $txt='<div style="font-family: serif; font-size: 11pt;">
 <img src="'.$src.'" style="width:100%"><br>
-      <b>Our Ref: <i>SLCMC/ADM/'.$intake_month.'/'.$intake_year.'</i></b><br>                 
-=======
-$txt='<div style="font-family: serif; font-size: 11pt;">
-<img src="letter.jpg"><br>
+
      <b>Our Ref: <i>SLCMC/ADM/'.$intake_month.'/'.$intake_year.'</i></b><br>                 
->>>>>>> c9b07b141756ad46f87c08af49d500dab87c50d0
 
       <b>Date: '.$approval_date.'</b><br>
 
-     <b>Dear '.$first_name.' '.$second_name.' '.$last_name.'</b><br>
+     <b>Dear: '.$first_name.' '.$second_name.' '.$last_name.'</b><br><br><br>
  
-     <b>RE: <u>PROVISIONAL LETTER OF ADMISSION</u></b> 
+     <b><u>RE: PROVISONAL OFFER LETTER</u></b> 
 
      <p>
-       Following your application and fulfilment of course requirements, I am pleased to congratulate you on your selection for <b>'.$couese_name.'</b>.  This course duration is <b>one (1) year</b>. The reporting date shall be on <b>27th September 2022 at 8:30 a.m.</b> accompanied by your guardian or parent.  
+       Following your application and fulfilment of the course requirements, I am pleased to offer you a slot for <b>'.$couese_name.'.</b>  This course runs for <b>(1) year  </b> on full time basis. The reporting date shall be on <b>'.$report_date.'</b> at <b>8:30 a.m.</b> in company or a guardian responsible for your fees. 
      </p>
      <p>
-      To be admitted, 50% of the first trimester fee <b>(Ksh. 30,200.00)</b> must be paid as indicated below.
-       </p>
-        <ol type="i">
-            <li>A deposit of <b>Kshs. 15,100.00</b> shall be paid at least one month before the admission date. The deposit slip must be brought to the college immediately failure to which replacement shall be done without notice.
+      Please note that this offer is only provisional and is subject to payment of a commitment fee of <b>Ksh. Ksh. 15,100</b> to secure the slot. The deposit slip shall be sent to the college within <b>one month</b>  from the stated date failure to which the chance shall be forfeited without further reference.</p> 
 
-            </li>
-            <li>
-               Along with the deposit slip in (i) above, carry with you 1 box file and 1 spring file, certified copies of your National ID, KCSE Certificate/ Result Slip, High School Leaving Certificate, Birth Certificate, Baptismal Certificate and two (2) recent coloured passport size photos.  <b>Certification must be done by the Commissioner of Oaths/ Advocate/ Magistrate. </b>
-            </li>
-            <li>
-             A further payment of <b>Kshs. 15,100.00</b> shall be done and deposit slip be brought on the reporting date.   
-            </li>
+      <p>Further note that once the slot is secured, you will be required to complete your admission process on the admission day upon physical presentation of the following listed items: </p>
+        <ol type="i">
+           <li>Deposit slip of further payment of Ksh 15,100 to clear 50% of the 1st trimester of 1st year of study.  The rest of the fees shall be paid as scheduled on the fee structure (attached). </li> 
+           <li>Certified copies of National ID (1), KCSE Certificate/ Result Slip (1), High School Leaving Certificate (1), Birth Certificate (1), Baptismal Certificate (1). Certification must be done by the commissioner of Oaths/ Magistrate. </li>
+           <li>1 Box File, 1 Spring file and recently taken passport sized photos (2) </li>
+           <li>Copy of medical insurance cover in which you are a beneficiary or contributor.  </li>
+           <li>Personal effects to be used in college (attached) </li>
+           <li>Copy of college rules (last page only), Admission Agreement Form and Medical Agreement Form all signed by both the student and guardian.  These forms can be downloaded from the college portal using the email address and password used during application. </li>  
+
         </ol>
    
-        Enclosed herewith, please find a fees structure, a list of personal effects and a list of books to be brought on the admission day.  The student’s/guardian’s pledge section on the college rules and regulations must be signed and copy of the page be brought upon admission.
-    <p> We wish you the best of luck in your training with us. </p>
+        <p>Congratulations on your selection to take up a course in our reputable institution.</p> 
+    
 
-<<<<<<< HEAD
      <p> Yours faithfully, </p><br><br><br><br><br>
           <img src="'.$src2.'" style="width:100px"><br>
      <b>JUMA ALFRED</b><br>
@@ -99,26 +88,6 @@ $dompdf->setPaper('A4', 'portrait');
 $dompdf->render();
 
 // Output the generated PDF to Browser
-$dompdf->stream('certificate in perioperative theatre.pdf',array('Attachment'=>0));
-=======
-      <p> Yours faithfully, </p><br>
-     </b><br>
-     <img src="sign.png" style="width:100px;"><br>
+$dompdf->stream('diploma in nursing.pdf',array('Attachment'=>0));
 
-     <b>JUMA ALFRED<br>
-      <u>The College Principal</u>
-     
-     <br><br>
-      <b><u>NOTE:</u></b><br>
-      This is a provisional letter which must be returned to the college one month before the admission date for issuance of the official admission letter or as shall be communicated.
-     <br><br> <br>
-     <i style="font-size:0.5em;">This is a system generated document. &copy; Sister Leonella Consolata Medical College 2022. All rights reserved</i>
-     </di>';
-
-require_once __DIR__ . '/vendor/autoload.php';
-
-$mpdf = new \Mpdf\Mpdf();
-$mpdf->WriteHTML($txt);
-$mpdf->Output();
->>>>>>> c9b07b141756ad46f87c08af49d500dab87c50d0
 ?>

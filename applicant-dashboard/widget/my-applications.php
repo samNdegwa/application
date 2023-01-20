@@ -77,15 +77,21 @@ $email=$_SESSION['myemail'];
           </script>
          <?php
       } else {
-
+       
+       ?>
+       <div class="card">
+       <div class="card-header">
+          <h6 class="card-title" style="color:green;text-align:center;">&nbsp;&nbsp <span style="float:left;"><i class="fa fa-pencil-square-o"></i> My Applications for <?php echo $intake.' Intake  &nbsp;&nbsp'?></span> &nbsp;&nbsp
+                  <?php '#'.$incode;?>
+                   <button class="btn btn-outline-primary btn-sm" style="float:right;" id="add-more-course"><i class="fa fa-plus-square" aria-hidden="true"></i> Apply More</button>
+                  </h6>
+       </div>
+       <div class="card-body">
+       <?php
         $sqlmy="SELECT applicants.applicant_id, courses.course_title, applicants.date_applied, intakes.year, intakes.month, applicants.status FROM applicants INNER JOIN courses ON applicants.course_id=courses.course_id INNER JOIN intakes ON applicants.intake_id=intakes.id WHERE batch_id='$incode'";
         $resultmy=mysqli_query($con,$sqlmy) or die(mysql_error());
                   ?>
                   
-                  <h5 style="color:green;text-align:center;">&nbsp;&nbsp <span style="float:left;"><i class="fa fa-pencil-square-o"></i> My Applications for <?php echo $intake.' Intake  &nbsp;&nbsp'?></span> &nbsp;&nbsp
-                  <?php '#'.$incode;?>
-                   <button class="btn btn-outline-primary btn-sm" style="float:right;" id="add-more-course"><i class="fa fa-plus-square" aria-hidden="true"></i> Apply More</button>
-                  </h5>
        <div id="table-wrapper">
        <div id="table-scroll">
       <table class="table table-hover table-bordered table-sm">
@@ -145,6 +151,8 @@ $email=$_SESSION['myemail'];
            ?>
            </div>
            </div>
+           </div>
+           </div>
            <br><br>
               <?php
                    if ( $totalPaid < 1000) {
@@ -172,6 +180,9 @@ $email=$_SESSION['myemail'];
     }
   }
 } else {
+
+
+
   //------------------------------------------------------------------------------Course booked
    $sql="SELECT applicants.applicant_id, courses.course_id, courses.course_title, applicants.date_applied, intakes.year, intakes.month, applicants.status FROM applicants
    INNER JOIN courses ON applicants.course_id=courses.course_id INNER JOIN intakes ON applicants.intake_id=intakes.id WHERE applicant_id='$booked_app'";
@@ -190,38 +201,38 @@ $email=$_SESSION['myemail'];
     <h4 style="color:green">Congratulations <?php echo  $first_name.'!';?></h4>
   </div>
   <div class="card-body">
-    <h6 class="card-title">Your application for <b style="color:#17A2B8"><?php echo $couese_name;?></b> for <b><?php echo $intake;?> intake</b> has been Approved. </h6>
+    <h6 class="card-title">You have secured <b style="color:#17A2B8"><?php echo $couese_name;?></b> for <b><?php echo $intake;?> intake</b>. </h6>
     <p class="card-text">Kindly download admission letter and Other Requirements documents below. These documents must be presented to college during reporting day.</p>
       <?php
          if($cid === '1')
          {
           ?>
-          <a href="#" class="btn btn-danger" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Download Provisional Letter</a>
+          <a href="#" class="btn btn-danger" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Download Admission Letter</a>
           <?php
           }
           if($cid === '2')
           {
           ?>
-          <a href="#" class="btn btn-danger" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Download Provisional Letter</a><br><br>
+          <a href="./pdf/diploma-nursing-admission.php" class="btn btn-danger" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Download Admission Letter</a><br><br>
            <a href="#" class="btn btn-danger" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Download Fees Structure & Other Requirements</a>
           <?php
           }
           if($cid === '5')
           {
             ?>
-          <a href="#" class="btn btn-danger" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Download Provisional Letter</a>
+          <a href="./pdf/dptt-admission.php" class="btn btn-danger" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Download Admission Letter</a>
           <?php
           }
           if($cid === '7')
           {
             ?>
-          <a href="#" class="btn btn-danger" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Download Provisional Letter</a>
+          <a href="./pdf/cptt-admission.php" class="btn btn-danger" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Download Admission Letter</a>
           <?php
           }
            if($cid === '3')
           {
             ?>
-          <a href="#" class="btn btn-danger" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Download Provisional Letter</a>
+          <a href="./pdf/midwifery-admission.php" class="btn btn-danger" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Download Admission Letter</a>
           <?php
           }
           ?>

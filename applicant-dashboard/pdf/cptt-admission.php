@@ -10,7 +10,8 @@ use Dompdf\Dompdf;
 $dompdf = new Dompdf();
 
 //Get user information
-$sql="SELECT applicants.applicant_id, courses.course_title, applicants.date_applied, intakes.year, intakes.month, intakes.report_date,applicants.status FROM applicants INNER JOIN courses ON applicants.course_id=courses.course_id INNER JOIN intakes ON applicants.intake_id=intakes.id WHERE applicant_id='$approved_app'";
+$sql="SELECT applicants.applicant_id, courses.course_title, applicants.date_applied, intakes.year, intakes.month, intakes.report_date,applicants.status,student_admission.admission_number FROM applicants
+   INNER JOIN courses ON applicants.course_id=courses.course_id INNER JOIN intakes ON applicants.intake_id=intakes.id INNER JOIN student_admission ON applicants.applicant_id=student_admission.app_id WHERE applicant_id='$booked_app'";
     $result=mysqli_query($con,$sql) or die(mysql_error());
     while($row=mysqli_fetch_array($result))
                {  
@@ -19,6 +20,7 @@ $sql="SELECT applicants.applicant_id, courses.course_title, applicants.date_appl
                   $intake_year=$row['year'];
                   $report_date=$row['report_date'];
                   $date_applied=$row['date_applied'];
+                  $admission=$row['admission_number'];
                   $status=$row['status'];
                 }
 
@@ -45,32 +47,40 @@ $txt='<div style="font-family: serif; font-size: 11pt;">
 
       <b>Date: '.$approval_date.'</b><br>
 
-     <b>Dear: '.$first_name.' '.$second_name.' '.$last_name.'</b><br><br><br>
+     <b>Dear '.$first_name.' '.$second_name.' '.$last_name.'</b><br>
+
+     <b>Admission No: '.$admission.'</b><br><br><br>
  
-     <b><u>RE: PROVISONAL OFFER LETTER</u></b> 
+     <b>RE: <u>LETTER OF ADMISSION</u></b> 
 
      <p>
-       Following your application and fulfilment of the course requirements, I am pleased to offer you a slot for <b>'.$couese_name.'.</b>  This course runs for <b>three (3) years</b> on full time basis. The reporting date shall be on <b>'.$report_date.'</b> at <b>8:30 a.m.</b> in company or a guardian responsible for your fees. 
+       I am pleased to congratulate you on securing a chance at our college for a <b>'.$couese_name.'</b>.  This course runs for <b>one (1) year</b>  on full time basis. The reporting date shall be on the <b>'.$report_date.'</b> at <b>8:30 a.m.</b> in company of a guardian responsible for your fees. 
      </p>
      <p>
-      Please note that this offer is only provisional and is subject to payment of a commitment fee of <b>Ksh. 23,767</b> to secure the slot. The deposit slip shall be sent to the college within two weeks from the stated date failure to which the chance shall be forfeited without further reference.</p> 
-
-      <p>Further note that once the slot is secured, you will be required to complete your admission process on the admission day upon physical presentation of the following listed items: </p>
+      Please note that your registration process shall be completed on the admission day upon receipt and verification of the under listed items: 
+       </p>
         <ol type="i">
-           <li>Springs files (2) and recently taken passport sized photos (2) </li>
+           <li>A copy of a provisional offer letter including the fee structure and all other attachments. </li> 
+           <li>Evidence of payment of the commitment fee to secure the slot as was stated in the provisional offer letter. </li> 
 
-            <li>Copy of medical insurance cover in which you are a beneficiary or contributor.   </li>
+          <li>Deposit slip of further payment to clear 50% of the first Instalment of 1st year as stated in the provisional offer letter. </li> 
 
-            <li>Key books necessary for your course. See the list of books attached. </li>
+          <li>Certified copies of National ID (1), KCSE Certificate/ Result Slip (1), High School Leaving Certificate (1), Birth Certificate (1), Baptismal Certificate (1) </li> 
 
-            <li>Personal effects to be used in college (attached) </li>
+          <li>Springs files (2) and recently taken passport sized photos (2) </li> 
 
-           <li>Copy of college rules (last page only), Admission Agreement Form and Medical Agreement Form all signed by both the student and guardian.  These forms can be downloaded from the college portal using the email address and password used during application.  </li>
+          <li>Original KSCE certificate/Result Slip</li> 
+
+          <li>Copy of medical insurance cover in which you are a beneficiary or contributor. </li> 
+   
+         <li>Copy of college rules (last page only), Admission Agreement Form, Medical Agreement Form, all signed by both the student and guardian </li> 
 
         </ol>
    
-        <p>Congratulations on your selection to take up a course in our reputable institution.</p> 
-    
+        <p>Further note all the listed books and personal effects shall be verified.</p>   
+ 
+        <p>We wish you the best of luck in your training with us.</p> 
+
 
      <p> Yours faithfully, </p><br><br><br><br><br>
           <img src="'.$src2.'" style="width:100px"><br>

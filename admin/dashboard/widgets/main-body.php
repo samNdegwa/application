@@ -62,7 +62,7 @@
             <div class="icon">
               <i class="ion ion-android-done-all"></i>
             </div>
-            <a href="booked_application" class="small-box-footer" id="open-failed-sms">Open <i class="fas fa-arrow-circle-right"></i></a>
+            <a id="booked_application" class="small-box-footer" id="open-failed-sms">Open <i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -70,7 +70,6 @@
       <!-- /.row -->
     </div><!-- /.container-fluid -->
   </section>
-
   <!-- Main content -->
   <section class="content">
     <div class="container-fluid" >

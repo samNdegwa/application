@@ -132,7 +132,6 @@ $(document).ready(function() {
     }); 
   });
 });
-
 function book_application(btn){
        var tr = $(btn).parent().parent();
           var img = $(tr).children('td:eq(0)').html();
@@ -151,23 +150,19 @@ function book_application(btn){
                   });
      }
 
-     function send_booking(){
-       var tr = $(btn).parent().parent();
-       var id = $(tr).children('td:eq(0)').html();
-       var course = $(tr).children('td:eq(2)').html();
-       var json = JSON.stringify([id,course]);
+     function send_booking(code,appId,cos,cos_id){
 
-        if (confirm("Are you sure you want to approve "+course+"?")) {
-       $('#unpaidModal').modal('hide');
-      $('#view-unpaid-apps').html('<i class="fa fa-pulse fa-refresh"></i> Aproving... '); 
-         $.post('functions/application-approval-submission.php',
+     if (confirm("Are you sure you want to Book Application number "+code+"?")) {
+      var json = JSON.stringify([code,appId,cos,cos_id]);
+         $.post('functions/book-slot.php',
                 {
                    data:json
                 },function(data,status){
-                   if (data === 'success') {
+                 
+                     if (data.replace(/^\s+|\s+$/gm,'') === 'success') {
                     $('#view-unpaid-apps').html('<i class="fa fa-check" aria-hidden="true"></i> Aproved');
                    Toastify({ 
-                    text: "Success!\n Application approved successifully",
+                    text: "Success!\n "+cos+" for application number "+code+" booked succesifully",
                     duration: 6000,
                     className: "primary",
                    style: {
@@ -177,7 +172,7 @@ function book_application(btn){
                    } else {
                     $('#view-unpaid-apps').html('<i class="fa fa-thumbs-up" aria-hidden="true"></i>');
                     Toastify({ 
-                    text: "Error!\n Unable to aprove. Check your internet connection",
+                    text: "Error!\n Unable to book. Check your internet connection",
                     duration: 6000,
                     className: "primary",
                    style: {
@@ -185,8 +180,9 @@ function book_application(btn){
                      }
                 }).showToast();
                    }
-
                   });
+       
+      
      } else {
         
       }

@@ -76,10 +76,11 @@ include 'widgets/bottom-script.php';
       $('#all-main-contents').load('widgets/paid-unprocessed-application.php');
     });
 
-       $('#booked_application').click(function (){
-      $('#paid-unprocessed').html('<i class="fa fa-spinner fa-spin"></i> Opening ...');
-      $('#all-main-contents').load('widgets/paid-unprocessed-application.php');
-    });
+    $('#booked_application').click(function (){
+      $('#booked_application').html('<i class="fa fa-spinner fa-spin"></i> Opening ...');
+      $('#all-main-contents').load('widgets/booked-applications-control.php');
+
+     });
 
       $('#view-all-intakes').click(function (){
        $('#all-main-contents').html('<i class="fa fa-spinner fa-spin"></i> Opening ...');
